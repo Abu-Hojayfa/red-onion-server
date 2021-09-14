@@ -26,9 +26,19 @@ client.connect((err) => {
   const dinner = client.db(`${database}`).collection(`${dbCollectionD}`);
   const lunch = client.db(`${database}`).collection(`${dbCollectionL}`);
 
-  app.get("/", (req, res) => {
+  app.get("/breakfast", (req, res) => {
+    breakFast.find({}).toArray((err, data) => res.send(data));
+  });
+
+  app.get("/dinner", (req, res) => {
     dinner.find({}).toArray((err, data) => res.send(data));
   });
+
+  app.get("/lunch", (req, res) => {
+    lunch.find({}).toArray((err, data) => res.send(data));
+  });
+
+
 });
 
 app.listen(port, () => {
